@@ -1,7 +1,10 @@
 package TJ3;
 
 public class Sungjuk {
-	String name;
+	
+	
+	 // 필드 선언
+	 String name;
 	int kor; int eng; int mat;
 	
 	

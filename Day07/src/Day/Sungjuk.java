@@ -6,15 +6,26 @@ public class Sungjuk {
 	int tot; double avg;
 	
 	
-	int tot(int kor, int eng, int mat) {
-		this.kor =kor; this.eng =eng; this.mat = mat;
-		
-		return kor+eng+mat;
+	int tot(String name,int kor, int eng, int mat) {
+		this.name=name; this.kor =kor; this.eng =eng; this.mat = mat;
+		int tot = kor+eng+mat;
+		return tot;
 	}
 	double avg(int kor, int eng, int mat) {
-		
-		return (kor+eng+mat)/3.0;
+		double avg =(kor+eng+mat)/3.0;
+		return avg;
 	}
+	String grade() {
+		String grade="";
+		double avg=(this.kor+this.eng+this.mat) / 3.0;
+		if(avg>=60) {
+			grade="합격";
+		}else {
+			grade="불합격";
+		}
+		return grade;
+	}
+	
 public void print() {
 		
 		System.out.println("=====================================");
@@ -24,11 +35,10 @@ public void print() {
 	}
 	public static void main(String[] main) {
 		Sungjuk s1 = new Sungjuk();
-		s1.kor = 80; s1.eng = 80; s1.mat=80;
-		int tot = s1.tot();
-		//s1.avg();
-		s1.print();
-		
-		
-	}
+		int result1=s1.tot("홍길동",80,80,80);
+		double result2=s1.avg(80,80,80);
+		String result3=s1.grade();
+		System.out.println(s1.name + "\t" + s1.kor + "\t" + s1.eng + "\t" + s1.mat + "\t" + result1 + "\t" + result2 + "\t" + result3);
+}
+	
 }

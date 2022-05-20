@@ -1,0 +1,476 @@
+1. for 문
+*
+**
+***
+****
+****** 
+
+package TJ;
+
+public class TJ05 {
+
+	public static void main(String[] args) {
+		String str1="";
+		for(int i=1;i<=5;i++) {
+			str1 +="*";
+		System.out.println(str1);
+		}
+
+	}
+
+}
+
+2. for문 돌려서 1부터 100까지의 최대값, 최소값
+최대값 변수 : max 최소값 변수 : min
+
+출력
+최대값 : 100
+최소값 : 1
+
+package TJ;
+
+public class TJ05 {
+
+	public static void main(String[] args) {
+		
+		int max =0; int min = 1000;
+		for(int i = 1;i<=100;i++) {
+			//최대값 if
+			if(i>=max) {
+				max = i;
+			}
+			//최소값 if
+			if(i<=min) {
+				min = i;
+				
+			}
+			
+		}
+		System.out.println("최대값 :" + max);
+		System.out.println("최소값 :" + min);
+		
+	}
+
+}
+
+Scanner 사용 while
+초기치 입력 :  
+최종치 입력 :  
+while 
+초기치 부터 최종치까지의 
+
+초기치 : x ~ 최종치 : x =>홀수의 합 : xx 
+초기치 : x ~ 최종치 : x =>짝수의 합 : xx
+총합 : xx
+
+초기치 :
+1
+최종치 :
+10
+초기치 :1 ~ 최종치: 10 짝수의합 :30
+초기치 :1 ~ 최종치: 10 홀수의합 :25
+총합 : 55
+
+package TJ;
+import java.util.Scanner;
+public class TJ05 {
+
+	public static void main(String[] args) {
+		int sum1=0; int sum2=0;
+		Scanner sc= new Scanner(System.in);
+		System.out.println("초기치 :");
+		int i = sc.nextInt();
+		System.out.println("최종치 :");
+		int j = sc.nextInt();
+		int i2 = i;
+		while(i<=j) {
+			if(i%2==0) {
+				//짝수의합
+				sum1 +=i;
+			}else {
+				//홀수의합
+				sum2 +=i;
+			}
+			i++;
+		}
+		System.out.println("초기치 :" + i2 + "  최종치 :" + j + "짝수의합 :" + sum1);
+		System.out.println("홀수의합 :" + sum2);
+		System.out.println("총합 :" + (sum1 + sum2));
+	}
+}
+
+package TJ;
+import java.util.Scanner;
+public class TJ05 {
+
+	public static void main(String[] args) {
+		int i=1; int sum=0;
+		while(i<=10) {
+			//1~5까지의 합을 구한후 break 문장 강제 종료
+			sum +=i;
+			i++;
+			if(i>5) {
+				break;
+			}
+
+		}
+		System.out.println("1부터 5까지의 합:" + sum);
+	}
+}
+
+
+package TJ;
+import java.util.Scanner;
+public class TJ05 {
+
+	public static void main(String[] args) {
+	 Scanner sc=new Scanner(System.in);
+	 
+	 
+	 while(true) {
+		 System.out.println("메뉴 선택 1. 구구단 2. id check 3. 배수 출력 0. 종료");
+		 int cnt =sc.nextInt();
+		 if(cnt == 1) {
+			  System.out.println("구구단");
+		 }else if(cnt == 2) {
+			 System.out.println("id check");
+		 }else if(cnt == 3) {
+			 System.out.println("배수 출력");
+		 }else if(cnt == 0) {
+			 System.out.println("메뉴 종료");
+			 break;
+		 }
+	 }
+	}
+}
+위의 코드 참조
+1. 
+2단 
+2 * 1=  2
+9단 
+9 * 9 = 81
+
+2. 
+id 입력 : xxx
+pw 입력 : xxx
+id가 admin 암호 1111 => 로그인 성공 / 로그인 실패
+
+3. 배수 출력
+for 문 이용
+1-100까지의 
+짝수의합 : xx
+
+0 누르면 메뉴 종료
+
+package TJ;
+import java.util.Scanner;
+public class TJ05 {
+
+	public static void main(String[] args) {
+	 Scanner sc=new Scanner(System.in);
+	 
+	 
+	 while(true) {
+		 System.out.println("메뉴 선택 1. 구구단 2. id check 3. 배수 출력 0. 종료");
+		 int cnt =sc.nextInt();
+		 if(cnt == 1) {
+			  //System.out.println("구구단");
+			 for(int i=2;i<=9;i++) {
+				 System.out.println(i + "단");
+				 for(int j=1;j<=9;j++) {
+					 System.out.println(i +"*" + j + "=" + i*j);
+				 }
+			 }
+		 }else if(cnt == 2) {
+			 //System.out.println("id check");
+			 System.out.println("id :");
+			 String id = sc.next();
+			 System.out.println("pw :");
+			 String pw = sc.next();
+			 
+			 if(id.equals("admin") && pw.equals("1111")) {
+				 System.out.println("로그인 성공");
+			 }else {
+				 System.out.println("로그인 실패");
+			 }
+		 }else if(cnt == 3) {
+			 //System.out.println("배수 출력");
+			 int sum =0;
+			 for(int i=1;i<=100;i++) {
+				 if(i%2==0) {
+					 sum +=i;
+				 }
+			 }
+			 System.out.println("1부터 100까지의 짝수의 합:" + sum);
+		 }else if(cnt == 0) {
+			 System.out.println("메뉴 종료");
+			 break;
+		 }
+	 }
+	}
+}
+
+함수를 이용한 예시 
+package TJ;
+import java.util.Scanner;
+public class TJ05 {
+
+	public static void main(String[] args) {
+	 Scanner sc=new Scanner(System.in);
+	 
+	 
+	 while(true) {
+		 System.out.println("메뉴 선택 1. 구구단 2. id check 3. 배수 출력 0. 종료");
+		 int cnt =sc.nextInt();
+		 if(cnt == 1) {
+			  //System.out.println("구구단");
+			 //함수 호출 
+			 gugudan();
+		 }else if(cnt == 2) {
+			 //System.out.println("id check");
+			//System.out.println(idcheck());
+			String id=idcheck();
+			System.out.println(id);
+		 }else if(cnt == 3) {
+			 //System.out.println("배수 출력");
+			 
+		 }else if(cnt == 0) {
+			 System.out.println("메뉴 종료");
+			 break;
+		 }
+	}
+	
+ }
+	// 클래스 
+	public static void gugudan() { //리턴값 x
+		 for(int i=1;i<=9;i++) {
+			 System.out.println(i);
+		 }
+	 }
+	 public static String idcheck() {
+		 Scanner sc=new Scanner(System.in);
+		 System.out.println("id 입력:");
+		 String id = sc.next();
+		 return id;
+	 }
+}
+	 
+	
+while 문 이용
+메뉴 1. 구구단 2. 성적처리 0. 종료
+메뉴번호 입력 : 
+
+1. 번을 입력하면 gugudan() 함수 호출해서 출력 => void 형
+2 * 1 = 2
+
+9 * 9 = 81
+
+2. 번을 입력하면 sungjuk() 함수호출 => return String 형
+국어
+영어
+수학 점수 입력 받아서
+평균을 구해서 
+if문 60점 이상이면 모든 과목이 40점이상이면 합격 아니면 불합격 출력
+총점 : xx
+평균 : xx
+return 합격여부 출력 : 합격 / 불합격
+
+0 종료....
+	
+package TJ;
+import java.util.Scanner;
+public class TJ05 {
+
+	public static void main(String[] args) {
+	 Scanner sc=new Scanner(System.in);
+	 
+	 
+	 while(true) {
+		 System.out.println("메뉴 선택 1. 구구단 2.성적처리 0. 종료");
+		 int cnt =sc.nextInt();
+		 if(cnt == 1) {
+			 gugudan();
+		 }else if(cnt == 2) {
+			String grade=sungjuk();
+			System.out.println(grade);
+		 }else if(cnt == 0) {
+			 System.out.println("메뉴 종료");
+			 break;
+		 }
+	}
+	
+ }
+	// 클래스 
+	public static void gugudan() { //리턴값 x
+		 for(int i=2;i<=9;i++) {
+			 System.out.println(i +"단");
+			 for(int j=1;j<=9;j++) {
+			 System.out.println(i + "*" + j + "=" + i*j);
+		 }
+		}
+	 }
+	 public static String sungjuk() {
+		 Scanner sc=new Scanner(System.in);
+		 System.out.println("kor:");
+		 int kor = sc.nextInt();
+		 System.out.println("eng:");
+		 int eng = sc.nextInt();
+		 System.out.println("mat:");
+		 int mat = sc.nextInt();
+		 int tot = kor + eng + mat;
+		 int avg = tot / 3;
+		 System.out.println(" 총점 :" + tot);
+		 System.out.println(" 평균 :" + avg);
+		 String grade;
+		 if(avg>=60 && kor>=40 && eng>=40 && mat>=40) {
+			 //return "합격";
+			 grade="합격";
+		 }else {
+			 //return "불합격";
+			 grade="불합격";
+		 }
+		 return grade;
+		 
+	 }
+}
+
+[실습문제]	 
+for과 continue 이용해서 
+1-10 사이를 반복 
+누적합계가 40점이 넘을떄의 
+i값과 sum 을 출력
+
+i = 9
+sum = 45
+
+package TJ;
+import java.util.Scanner;
+public class TJ04 {
+	public static void main(String[] args) {
+		
+		int sum=0; int cnt=0; 
+		for(int i=1;i<=10;i++) {
+			
+				if(sum < 40) {
+				cnt = i;
+				sum += i;
+				continue;
+			}
+				
+		}
+		System.out.println("i =" + cnt);
+		System.out.println("sum =" + sum);
+ 	   }		
+}
+
+
+package TJ;
+import java.util.Scanner;
+public class TJ04 {
+	public static void main(String[] args) {
+	int[] score = new int[2];
+	//System.out.println(score[0]);
+	//System.out.println(score[1]);
+	score[0]=80;
+	score[1]=90;
+	Scanner sc=new Scanner(System.in);
+	//int sum = score[0] + score[1];
+	int sum=0;
+	for(int i=0;i<2;i++) {
+		System.out.println("score [" +(i+1) + "] : 입력");
+		score[i]=sc.nextInt();
+		sum +=score[i];
+	}
+	
+	System.out.println(score[0]);
+	System.out.println(score[2]);
+	System.out.println(sum);
+		
+   }		
+}
+		
+			
+* 배열 실습 문제
+Scanner를 이용해서 입력 받으시오
+1.  int 형 배열명 jumsu => 5명 선언 =>for 문을 이용해서 5명의 점수 입력 받음 
+입력 혈식	
+jumsu[1] :
+...
+jumssu[5] :
+입력
+2. 입력 받은 배열변수의 점수를 for을 문 이용해서 총점을 구하시오
+
+3. 옵션!!! 할 사람만 하시오... 입력 받은 점수 중에  최고점수와 최저점수를 찾으시오
+
+4. 평균을 구하는데 double 형으로 구하시오..
+
+
+출력양식
+총점 : xxx
+평균 : xx.x
+최고점수 : xx
+최저점수 : xx
+
+	
+package TJ;
+import java.util.Scanner;
+public class TJ04 {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int[] jumsu=new int[5]; int sum = 0; int max =0; int min = 1000;
+		//데이터 입력
+		for(int i=0;i<5;i++) {
+			System.out.println("jumsu[" + (i+1) +"] :");
+			jumsu[i]=sc.nextInt();
+			sum += jumsu[i];
+			//최대값 
+			if(jumsu[i] >= max) {
+				max = jumsu[i];
+			}
+			//최소값 
+			if(jumsu[i] <= min) {
+				min = jumsu[i];
+			}
+		}
+		double avg = (double) sum / 5.0;
+		System.out.println("총점 :" + sum);
+		System.out.println("평균 :" + avg);
+		System.out.println("최고점수 :" + max);
+		System.out.println("최저점수 :" + min);
+		
+		
+		/*출력 for문
+		for(int i=0;i<5;i++) {
+		System.out.println("jumsu[" + (i+1) +"] :" + jumsu[i]);
+			
+		}*/
+   }		
+}
+		
+	
+	
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+	
+	
+	
+
+
+
+
+
+
+
+

@@ -1,0 +1,205 @@
+자바 개발 환경 구축
+1. jdk 설치
+jdk-8u331-windows-x64 설치 =>기본으로 설치
+
+2. 설치 위치
+C:\Program Files\Java\jdk1.8.0_331
+
+3. 환경설정
+
+내 pc 속성 => 정보 => 고급 시스템 설정 클릭 => 시스템 속성 => 환경 변수 클릭 => 시스템 변수 => 새로 만들기 클릭 => 변수 이름  : JAVA_HOME 
+변수 값 : 설치위치 경로 붙이기 C:\Program Files\Java\jdk1.8.0_331 => 확인 
+
+시스템 변수 => Path 선택 => 편집 클릭 => 새로 만들기 클릭 => %JAVA_HOME%\bin => 확인 => 확인 -=> 확인
+
+4. 환경 변수 설정 확인
+실행 : cmd 
+
+java -version
+java version "1.8.0_331"
+Java(TM) SE Runtime Environment (build 1.8.0_331-b09)
+Java HotSpot(TM) 64-Bit Server VM (build 25.331-b09, mixed mode) 나와야 정상
+
+javac -version
+javac 1.8.0_331 정상
+
+
+
+
+
+라이브러리 API 참조 사이트
+https://docs.oracle.com/javase/8/docs/api/
+
+1.
+Hello.java 
+
+public class Hello {
+	public static void main(String[] args) {
+	System.out.println("Hello Java");
+ }	
+}
+
+c:\Temp 폴더 : Hello.java 저장
+cmd 
+
+cd c:\Temp => 폴더변경
+dir /w => 해당 폴더에 목록 확인
+type Hello.java 파일의 내용 확인
+
+2. class 파일로 컴파일
+javac Hello.java
+dir /w 확인
+Hello.class 파일로 생성
+
+3. 실행 결과 확인
+java Hello
+Hello java 실행 결과 확인
+
+공유폴더에서 파일 가져가세요...!!!
+\\192.168.150.180
+
+public class Add {
+	public static void main(String[] args) {
+		int a = 10;
+		int b = 20;
+		int c = a + b;
+		System.out.println("합계 :" + c);
+	}	
+}
+C:\Temp 현재 디렉토리
+dir /w 
+javac Add.java
+dir /w
+Add.class 확인 
+실행 결과 확인
+java Add
+합계 :30 => 실행결과
+
+[실습문제]
+
+파일명 : Gup.java => 저장 c:\Temp 디렉토리에 저장
+클래스명 : Gup
+int aa 변수 : 50 초기치 저장
+int bb 변수 : 10 초기치 저장
+int cc 변수 : aa 변수와 bb 변수의 값을 곱하시오
+
+출력 결과 
+곱셈 : 500 나오도록 => 바이트 코드를 생성 후 실행 결과를 확인 하시오
+
+Gup.java
+public class Gup {
+	public static void main(String[] args) {
+		int aa = 50;
+		int bb = 10;
+		int cc = aa * bb;
+		System.out.println("곱셈 :" + cc);
+	}	
+}
+
+* 이클립스 설치
+1. eclipse.org 사이트 => Download 클릭 =>Get Eclipse IDE 2022‑03 => download 클릭 => download 클릭 => 다운로드 완료
+
+2. Eclipse IDE for java Developers 클릭 => install 클릭 => 사용권 동의 예 => 다 설치 되면 LANUNCH 클릭 
+
+3. 작업공간 : C:\Users\TJ\eclipse-workspace => Lanuch 클릭 =>
+
+4. 환경 설정
+window => Preference => General => Appearance => Colors and Fonts =>Basic 확장 => Text Font 선택 =>Edit 클릭 => 글자클기와 글꼴스타일 => 확인 => Apply and Close 
+
+5. Java Project 생성
+File => New => java project 클릭 =>Project name : JAVA => Next => Finish 클릭 
+
+6. Packege 생성
+JAVA 프로젝트 우클릭 => New => Package => Name => chap01.tj => Finish 
+
+7. Class 생성 
+chap01.tj 패키지 우클릭 => New => Class => Name : Hell0 => public static void main(String[] args) 체크 =>  finish
+실행 run 메뉴 => run 클릭 단축키( ctrl + F11) 
+
+[실습문제]
+1. 패키지 생성
+패키지 이름 : Test
+클래스 이름 : Calc
+int a = 20;
+int b = 10;
+
+int c = a + b;
+int d = a - b; 
+
+출력 
+덧셈 : 30
+뺄셈 : 10
+
+이클립스 작업스페이스  
+패기지랑 클래스파일 소스파일 확인
+
+10진수  : 10 ,11 ,12
+8진수 : 05, 06
+16진수 : 0x1~0x9 => 10, 11 ,12,13,14,15
+0xA. 0xB,0xF
+
+"안녕 "안녕2""
+
+	
+
+[실습문제]
+패키지 생성 : student
+클래스  : Sungjuk
+int 형으로 변수 선언
+kor  국어점수
+eng 영어점수
+mat 수학점수
+tot 총점
+avg 평균
+
+String 형으로 변수 선언
+name
+
+변수값 대입
+이름 : 홍길동
+국어점수  : 100
+영어점수 : 90
+수학점수 : 80
+
+출력 양식
+이름 : 홍길동
+국어점수 : 100
+영어점수 : 90
+수학점수 : 80
+총점 : 270
+평균 : 90
+
+package student;
+
+public class Sungjuk {
+
+	public static void main(String[] args) {
+		int kor = 100;
+		int eng = 90;
+		int mat = 80;
+		int tot = kor + eng + mat;
+		int avg = tot / 3;
+		String name = "홍길동";
+		System.out.println("이름 :" + name);
+		System.out.println("국어점수 :" + kor);
+		System.out.println("영어점수 :" + eng);
+		System.out.println("수학점수 :" + mat);
+		System.out.println("총점 :" + tot);
+		System.out.println("평균 :" + avg);
+//평균이 90점 이상이면 우수 출력 아니면 미흡 출력
+		// if(조건) { 참인 문장; } else { 거짓인 문장 }
+		if(avg >= 90) 
+		{
+			System.out.println("우수");
+		}
+		else {
+			System.out.println("미흡");
+		}
+	}
+
+}
+
+
+실행 : \\192.168.150.180
+
+

@@ -1,0 +1,303 @@
+\\192.168.150.180
+int su1, su2 변수지정
+su1 = 100;
+su2 = 50;
+
+int add, sub, gup, div
+결과출력
+
+덧셈 : 150
+뺄샘 : 50
+곱하기 : 5000
+나누기 : 2
+
+package TJ;
+
+public class tj01 {
+
+	public static void main(String[] args) {
+		
+		int su1 = 100; int su2 = 50;
+		int add = su1 + su2;
+		int sub = su1 - su2;
+		int gup = su1 * su2;
+		int div = su1 / su2;
+		System.out.println("덧셈 :" + add);
+		System.out.println("뺄셈 :" + sub);
+		System.out.println("곱셈 :" + gup);
+		System.out.println("나누기 :" + div);
+
+	}
+
+}
+
+package TJ;
+
+public class tj01 {
+
+	public static void main(String[] args) {
+		
+		int su1 = 100; int su2 = 50;
+		
+		// 문자열 + 숫자 => 문자열 연결 "안녕" + 1+ 2 => 안녕12
+		// 숫자1 + 숫자2 + 문자열 => 1 + 2 + "안녕" => 3안녕
+		System.out.println("덧셈 :" + (su1 + su2));
+		System.out.println("뺄셈 :" + (su1 - su2));
+		System.out.println("곱셈 :" + (su1 * su2));
+		System.out.println("나누기 :" + (su1 / su2));
+	}
+}
+0,1 => bit => 8bit => 1byte => 1024byte => 1mb
+데이터의 유효범위 -2(n-1)~2(n-1)-1
+
+* 이진수 정리
+110 => 2진수
+00000000  => 0
+11111111  => 255
+128 64 32 16 8 4 2 1
+ 0   1     1   0 1 1 1 0
+10111001
+2진수
+120 =>01111000
+96 =>01100000
+118 =>01110110
+
+=> 2진수 => 10진수
+10101000 => 168
+11000000 => 192
+11110010 =>  242
+
+8진수 2^3
+16진수 2^4
+168 => 10101000
+|10|101|000|    => 250(8)
+|1010|1000|  => A8(16)
+
+192 => 11000000
+|11|000|000| =>300(8)
+|1100|0000| => c0(16)
+A => 10, B => 11, C=> 12 ,D => 13, E => 14, F=>15
+
+185 => 10진수
+2진수 => 10111001
+8진수 => |10|111|001| =>271(8)
+16진수 =>|1011|1001|  =>B9(16)
+
+2의 보수로 음수
+00000001 => 1의보수 11111110 => 2의 보수 +1 =>11111111 => -1
+00000010 => 1의보수 11111101 => 2의 보수 + 1 =>11111110 => -2
+10 => 보수로 이용해서 음수
+00001010 => 1의 보수 11110101 => 2의보수 + 1 => 11110110 => -10
+20 => 보수로 이용해서 음수
+00010100 => 1의 보수 11101011 => 2의보수 + 1 => 11101100=> -20
+
+반복문....
+for(초기치;조건;증가치) {
+반복 문장;
+}
+++/-- 증감연산자
+
+for(int i=0;i < 5; i++) {
+System.out.println("*"); //반복문장
+} 
+
+1. i<5 조건 비교 => true / false => 만족
+2. System.out.println("*"); 실행
+3. i++ =>1씩 증가 =>1
+4. i<5 조건 비교 => true / false => 만족
+
+for문 1부터 10까지의 합...
+int i, sum 변수
+sum : 합계를 내는 변수
+출력결과
+1부터 10까지의 합 : 55
+
+int sum;
+1+2....+10 =55
+sum = sum +i; => 누적변수
+
+package TJ;
+
+public class tj01 {
+
+	public static void main(String[] args) {
+	int sum = 0;
+	for(int i=1;i<=10;i++) {
+		sum = sum + i;
+		//System.out.println(sum);
+	}
+	System.out.println("1부터 10까지의 합 :" + sum);
+	
+	}
+	
+
+}
+
+0x0041 =>  00000000  01000001
+
+byte a = 1; => 1 byte
+short b = 2; => 2 byte
+short => int c = a + b;  => byte => int 형변환 + short => int 형 변환
+
+00001010 => 012
+0xA
+1.2345 => 가수 0.1235 * 10^1
+12.2345 => 10^2
+
+[실습문제]
+2. 변수 국어점수, 영어점수, 수학점수, 총점, 평균, 이름, 학점
+3.  kor, eng, mat, tot, avg , name. grade
+4. 국어점수, 영어점수, 수학점수를 변수에 알아서 대입 후
+총점과 평균 구하시오
+5. 조건문 IF 평균이 60점이상이면 'P' 아니면 'F'
+
+출력 결과
+이름 : 홍길동
+국어점수 : 80
+영어점수 : 80
+수학점수 : 80
+총점 : 240
+평균 : 80 or 80.0 둘 줄에 알아서 설정
+합격여부 : P or F
+ 
+package TJ;
+
+public class Student {
+
+	public static void main(String[] args) {
+		int kor = 80; int eng = 80; int mat = 80;
+		String name = "홍길동";
+		int tot = kor + eng + mat;
+		double avg = (kor + eng + mat) / 3;
+		char grade;
+		if(avg>=60) {
+			grade='P';
+		}
+		else
+		{
+			grade='F';
+		}
+		System.out.println("이름 :" + name);
+		System.out.println("국어점수 :" + kor);
+		System.out.println("영어점수 :" + eng);
+		System.out.println("수학점수 :" + mat);
+		System.out.println("총점 :" + tot + " 평균 :" + avg);
+		System.out.println("합격 여부 :" + grade);
+	}
+
+}
+&& => AND 조건 if(조건 1 && 조건 2) {
+}else {
+}
+조건1과 조건2 모두 참일 때 참이고 하나라도 거짓이면 거짓(논리곱)
+
+|| => OR 조건 if(조건 1 || 조건 2) {
+}else {
+}
+조건1과 조건2 중 하나라도 참이면 참(논리합)
+a=20, b=12
+
+[실습문제 2]
+2. 변수 국어점수, 영어점수, 수학점수, 총점, 평균, 이름, 학점
+3.  kor, eng, mat, tot, avg , name. grade
+4. 국어점수, 영어점수, 수학점수를 변수에 알아서 대입 후
+총점과 평균 구하시오
+5. 조건문 IF 평균이 60점이상이면 "합격" 아니면 "불합격"
+단 평균이 60점 이상 인데 한 과목이라도 40점 미만이면 불합격
+
+이름 : 홍길동
+국어점수 : 80
+영어점수 : 80
+수학점수 : 38
+총점 : 240
+평균 : xx.0 
+합격여부 : 합격 or 불합격 (난이도 초중)
+
+
+package TJ;
+
+public class Student {
+
+	public static void main(String[] args) {
+		int kor = 80; int eng = 80; int mat = 39;
+		String name = "홍길동";
+		int tot = kor + eng + mat;
+		double avg = (kor + eng + mat) / 3;
+		String grade;
+		if(avg>=60 && kor >= 40 && eng >= 40 && mat >=40) {
+			grade="합격";
+		}
+		else
+		{
+			grade="불합격";
+		}
+		System.out.println("이름 :" + name);
+		System.out.println("국어점수 :" + kor);
+		System.out.println("영어점수 :" + eng);
+		System.out.println("수학점수 :" + mat);
+		System.out.println("총점 :" + tot + " 평균 :" + avg);
+		System.out.println("합격 여부 :" + grade);
+	}
+	}
+
+
+
+!! 추가 문제
+1. jumsu 대입 0~100점 사이만 점수 입력...
+조건문을 이용해서 이 범위가 아니면 
+점수 잘못 입력 정상적인 점수면 출력...(난이도 중)
+
+package TJ;
+
+public class Student {
+
+	public static void main(String[] args) {
+		int jumsu = 80;
+		if(jumsu < 0 || jumsu > 100) {
+			System.out.println("점수 잘못 입력");
+		}else {
+			System.out.println("점수 :"+ jumsu);
+		}
+	}
+}
+
+package TJ;
+
+public class Student {
+
+	public static void main(String[] args) {
+		int jumsu = 101;
+		if(jumsu >= 0 && jumsu <= 100) {
+			System.out.println("점수 :"+ jumsu);
+			
+		}else {
+			System.out.println("점수 잘못 입력");
+		
+		}
+	}
+}
+
+
+!!!2. 국어, 영어 점수 대입  0~100점 사이면 총점을 출력하고 
+이 점수 범위가 아니면 "잘못된 점수 입력 출력"  (난이도 상)
+
+package TJ;
+
+public class Student {
+
+	public static void main(String[] args) {
+		int kor = 100; int eng = 70; int mat=70; 
+		if( kor < 0 || kor > 100 || eng < 0 || eng > 100 || mat < 0 || mat > 100) {
+			System.out.println("점수 잘못 입력");
+		}else {
+			
+			System.out.println("총점 :"+ (kor+eng+mat));
+		}
+	}
+}
+
+ 
+
+
+
+

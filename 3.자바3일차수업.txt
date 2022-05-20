@@ -1,0 +1,436 @@
+1. 
+for 문 이용해서 
+1-10까지의 합
+누적 변수 sum
+출력 
+1부터 10까지의 합 : 55
+
+2. int j = 10;  int k = 10;
+
+for 이용해서 
+j가 20이 되도록 증가 연산자를 이용해서 출력
+k는 감소 연산자를 이용해서 0을 출력
+
+public class Tj02 {
+
+	public static void main(String[] args) {
+		int sum = 0; int j = 10; int k = 10;
+		for(int i = 1; i < 11; i++) {
+			//sum += i;
+			sum = sum +i;	
+			j++;
+			k--;
+		}
+		System.out.println("1부터 10까지의 합 :" + sum);
+		System.out.println("j 증가 :" +j);
+		System.out.println("k 감소 :" + k);
+		
+	}
+
+}
+
+반복문 for, while
+while (조건) {
+반복문장;
+}
+
+int i=1;
+while (i<=10) {
+System.out.println("0"+i);
+i++;
+}
+
+int i=1;
+while (i) {
+System.out.println(i);
+}
+
+public static 데이터형 함수명() {
+로직....
+return 변수명;
+}
+1. 함수를 생성하고 호출하고 함수 처리 후 원래의 번지로 리턴...
+
+public static String aaa(int value) {
+로직....
+return 변수명;
+}
+value 라는 변수는 매개변수 => 매개변수 어떤 값을 받아주는 변수
+
+
+	public static void main(String[] args) {
+		//int kor = 80; int eng = 100;
+		//함수 호출
+		int tot= tot(80,100);
+		System.out.println("총점 : " + tot );
+		System.out.println("종료");
+		
+				
+		}
+	// 성적을 합산을 내는 함수=매소드 생성
+	public static int tot(int kor, int eng) {
+		int tot = kor + eng;
+		return tot;
+	}
+
+void => 리턴값이 없는 함수	
+public static void tot(int kor, int eng) {
+		int tot = kor + eng;
+		System.out.println("총점 :" + tot);
+	}
+
+
+[실습문제] 
+int kor = 80 ; int eng =100; int mat = 90;
+
+함수명 : grade1()  void 형
+함수명 : grade2() String 형 => return 값
+함수생성
+grade1()  국어, 영어, 수학 점수를 매개 변수로 받아서
+평균이 60 점이상이면 합격 아니면 불합격 출력
+
+public class Tj02 {
+
+	public static void main(String[] args) {
+		int kor = 100; int eng = 70; int mat = 60;
+		
+		//함수 호출
+		grade1(kor, eng, mat);
+		
+		
+  }
+	//함수 생성 grade1() void 형 리턴값이 없는 함수(매소드)
+	public static void grade1(int kor, int eng, int mat) {
+		double avg = (kor + eng + mat) / 3.0;
+		if(avg >= 60) {
+			System.out.println("합격");
+		}
+		else {
+			System.out.println("불합격");
+		}
+	}
+	}
+
+grade2()  국어, 영어, 수학 점수를 매개 변수로 받아서
+평균이 60 점이상이면 합격 아니면 불합격 출력
+return 합격/불합격을 리턴해서 출력
+
+package TJ;
+
+public class Tj02 {
+
+	public static void main(String[] args) {
+		int kor = 100; int eng = 10; int mat = 10;
+		String grade = grade2(kor, eng, mat);
+		System.out.println(grade);
+		
+  }
+	
+	public static String grade2(int kor, int eng, int mat) {
+		double avg = (kor + eng + mat) / 3.0;
+		String grade;
+		if(avg >= 60) {
+			grade = "합격";
+		}
+		else {
+			grade = "불합격";
+		}
+		return grade;
+	}
+	}
+
+for / while 문 이용
+1부터 100까지의 합
+홀수의 합 : xx
+짝수의합 : xx
+총합 : xx
+5050
+
+package TJ;
+
+public class Tj02 {
+
+	public static void main(String[] args) {
+		int sum1 = 0; // 짝수의합
+		int sum2 = 0; //홀수의 합
+		
+		for(int i=1;i <= 100;i++) {
+			if(i % 2 == 0) {
+				//짝수의합
+				sum1 +=i;
+			}else {
+				//홀수의합
+				//sum2 +=i;
+				sum2 = sum2 +i;
+			}
+		}
+		System.out.println("짝수의합 :" + sum1);
+		System.out.println("홀수의합 :" + sum2);
+		System.out.println("총합 :" + (sum1 +sum2));
+	
+  }
+}
+
+package TJ;
+
+public class Tj02 {
+
+	public static void main(String[] args) {
+		int sum1 = 0; // 짝수의합
+		int sum2 = 0; //홀수의 합
+		int i=1;
+
+		while(i<=100) {
+			if(i % 2 == 0) {
+				//짝수의합
+				sum1 +=i;
+			}else {
+				//홀수의합
+				//sum2 +=i;
+				sum2 = sum2 +i;
+			}
+			i++;
+		}
+		System.out.println("짝수의합 :" + sum1);
+		System.out.println("홀수의합 :" + sum2);
+		System.out.println("총합 :" + (sum1 +sum2));
+	
+  }
+}
+	
+package TJ;
+
+public class Tj02 {
+
+	public static void main(String[] args) {
+		try {
+			int result = safeAdd(2000000000, 2000000000);
+			System.out.println(result);
+		} catch(ArithmeticException e) {
+			System.out.println("오버플로우가 발생 하였습니다.");
+		}
+		
+  }
+	
+	public static int safeAdd(int left, int right) {
+		if((right>0)) {
+			if(left>(Integer.MAX_VALUE - right)) {
+				throw new ArithmeticException("오버플로우");
+			}
+		}else {
+			if(left < (Integer.MIN_VALUE - right)) {
+				if(left>(Integer.MAX_VALUE - right)) {
+				throw new ArithmeticException("오버폴로우");
+			}
+		}
+	}
+		return left + right;
+}
+}
+
+Scanner 클래스 사용(입력데이터)
+package TJ;
+import java.util.Scanner;
+public class SC1 {
+
+	public static void main(String[] args) {
+		String name; int kor; Double avg;
+		// 스캐너 객체 생성
+		Scanner sc = new Scanner(System.in);
+		System.out.println("이름 입력 :");
+		//next() 한줄 단어 공백이전까지 한 단어 받아서 처리
+		name = sc.next();
+		System.out.println("국어점수");
+		//nextInt() 정수 데이터 입력
+		kor = sc.nextInt();
+		System.out.println("평균 입력 :");
+		//nextDouble 실수형 데이터 입력
+		avg = sc.nextDouble();
+		
+		System.out.println(" 이름 :" + name);
+		System.out.println(" 국어점수 :" + kor);
+		System.out.println(" 평균 :" + avg);
+		
+	}
+
+}
+
+
+}
+
+Scanner 클래스 이용해서 실습
+1. 이름, 국어, 영어 ,수학 점수를 입력 받아서 총점과 평균 구하시오
+2. 평균이 60점이상면서 모든 과목이 40점이상 이면 합격 아니면 불합격
+
+출력 형식
+이름 : xxx , 
+국어 :  
+영어 : 
+수학 ;
+총점 : xx 평균 : xx.x 
+합격여부 :  합격 / 불합격
+
+3. for 문 이용
+1-100까지의 3 또는 4의 배수의 합
+3또는 4의 배수의 합 : xxxx
+
+4. for 문 이용해서 구구단(Scanner 이용)
+단을 입력 : 
+3 * 1 = 3
+3 * 2 =6
+...
+3 * 9 =27
+
+
+1.
+package TJ;
+import java.util.Scanner;
+public class SC1 {
+	public static void main(String[] args) {
+		String name; int kor; int eng; int mat;
+		int tot; double avg; String grade;
+		// 스캐너 객체 생성
+		Scanner sc = new Scanner(System.in);
+		System.out.println("이름 입력 :");
+		//next() 한줄 단어 공백이전까지 한 단어 받아서 처리
+		name = sc.next();
+		System.out.println("국어점수 :");
+		//nextInt() 정수 데이터 입력
+		kor = sc.nextInt();
+		System.out.println("영어점수 :");
+		//nextInt() 정수 데이터 입력
+		eng = sc.nextInt();
+		System.out.println("수학점수 :");
+		//nextInt() 정수 데이터 입력
+		mat = sc.nextInt();
+		
+		tot = (kor + eng + mat);
+		avg = tot / 3.0;
+		if(avg >= 60 && kor >= 40 && eng >=40 && mat >=40) {
+			grade ="합격";
+		}else {
+			grade =" 불합격";
+		}
+		System.out.println("이름 : " + name);
+		System.out.println("국어 :" + kor + " 영어 :" + eng + " 수학 :" + mat);
+		System.out.println("총점 :" + tot + " 평균 :" + avg);
+		System.out.println("합격여부 :" + grade);
+		}
+	}
+
+2. 
+package TJ;
+import java.util.Scanner;
+public class SC1 {
+	public static void main(String[] args) {
+		int sum = 0;
+		for(int i=1;i<=100;i++) {
+			if( i % 3 == 0 || i % 4 ==0)
+			{
+				sum +=i;
+			}
+		}
+		System.out.println("3또는 4의 배수의 합 :" + sum);
+		}
+	}
+
+
+package TJ;
+import java.util.Scanner;
+public class SC1 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int dan;
+		System.out.println("단 입력 :");
+		dan =sc.nextInt();
+		System.out.println(dan + "단 출력");
+		for(int i=1; i<=9;i++) {
+			
+			System.out.println(dan + "*" + i + "=" + dan * i);
+		}
+	}	
+
+}
+
+
+함수와 이용한 실습문제
+1. Scanner 클래스 이용
+이름, 국어, 영어, 수학 입력 받으시오.
+2. 총점은 int 형, 평균은 double 형, 합격여부 : 합격 / 불합격
+(평균 60점 이면서 국어, 영어, 수학 점수가 모두 40점이 넘어야 합격 아니면 불합격)
+2.2 국어, 영어, 수학은 각 함수에서 매개변수로 받아서 처리
+3. int 형으로 리턴 총점 구하는 함수 : 함수명 tot()
+4. double 형으로 리턴 평균 구하는 함수 : 함수명 avg()
+5. String 형으로 리턴 합격 / 불합격 : 함수명 grade()
+6. 출력 양식 1
+성적 결과
+이름 : xxx
+국어 : xx 영어 : xx 수학 : xx
+총점 : xxx
+평균 : xx.x
+합격 여부 : 합격 / 불합격 출력
+
+출력양식 2
+성적결과
+=============================================
+이름	국어 	영어 	수학	총점	평균 	합격여부
+===============================================
+xxx         80           80          80          240         80.0           합격
+
+
+package TJ;
+import java.util.Scanner;
+public class SC1 {
+	public static void main(String[] args) {
+		String name; int kor; int eng; int mat;
+		int tot; double avg; String grade;
+		// 스캐너 객체 생성
+		Scanner sc = new Scanner(System.in);
+		System.out.println("이름 입력 :");
+		//next() 한줄 단어 공백이전까지 한 단어 받아서 처리
+		name = sc.next();
+		System.out.println("국어점수 :");
+		//nextInt() 정수 데이터 입력
+		kor = sc.nextInt();
+		System.out.println("영어점수 :");
+		//nextInt() 정수 데이터 입력
+		eng = sc.nextInt();
+		System.out.println("수학점수 :");
+		//nextInt() 정수 데이터 입력
+		mat = sc.nextInt();
+		
+		tot = tot(kor, eng, mat);
+		avg = avg(kor, eng, mat);
+		grade = grade(kor, eng, mat);
+		
+		System.out.println("==================================================");
+		System.out.println("이름\t국어\t영어\t수학\t총점\t평균\t합격여부");
+		System.out.println("==================================================");
+		System.out.println(name +"\t" + kor + "\t" + eng + "\t" + mat + "\t" + tot + "\t" + 
+		avg + "\t" +grade);
+		}
+	public static int tot(int kor, int eng, int mat) {
+		int tot = kor + eng + mat;
+		return tot;
+	}
+	public static double avg(int kor, int eng, int mat) {
+		double avg = (kor + eng + mat) / 3.0;
+		return avg;
+	}
+	
+	public static String grade(int kor, int eng, int mat) {
+		String grade;
+		double avg = (kor + eng + mat) / 3.0;
+		if(avg >= 60.0 && kor >=40 && eng >= 40 && mat >=40) {
+			grade = "합격";
+		}else
+		{
+			grade = "합격";
+		}
+		return grade;
+	}
+	}	
+
+
+
+

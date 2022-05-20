@@ -1,0 +1,513 @@
+package TJ;
+
+public class Singleton {
+	//정적 필드
+	private static Singleton singleton = new Singleton();
+	private Singleton() {}
+	int kor =100; int eng = 80;
+	static Singleton getInstance() {
+		return singleton;
+	}
+
+}
+
+package TJ;
+
+public class SingletonExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//Singleton obj1 = new Singleton();
+		//Singleton obj2 = new Singleton();
+		Singleton obj1 = Singleton.getInstance();
+		Singleton obj2 = Singleton.getInstance();
+		
+		System.out.println(obj1.kor);
+		System.out.println(obj1.eng);
+		System.out.println(obj2.kor);
+		System.out.println(obj2.eng);
+		// 리턴값 주소(참조번지)
+				if(obj1 == obj2) {
+			System.out.println("같은 객체");
+		}else {
+			System.out.println("다른 객체");
+		}
+	}
+
+}
+
+
+Singleton 이용한 실습
+1.
+private singleton 객체 생성
+2. 매소드 gets1(){ 객체 생성 참조번지 return}
+3. static name, kor, eng, mat 생성 점수는 static 블럭 만들어서 초기치 선언해서 실습
+총점과 평균을 구하는 매소드 tot(), avg()
+4. SingletonExample 클래스에서  gets1 메소드를 호출해서....
+5. 성적처리 매소드 or 다른 형태로 구해서.=> 이름:  총점 : 평균 
+
+
+package TJ;
+
+public class Singleton {
+	private static Singleton s= new Singleton();
+	
+	private Singleton() {
+	}
+	static Singleton gets1() {
+		return s;
+	}
+	static String name; static int kor; static int eng; static int mat;
+	static {
+		name = "홍길동";
+		kor = 100;
+		eng = 60;
+		mat = 70;
+	}
+	
+	int tot() {
+		return (kor + eng + mat);
+	}
+	
+	double avg() {
+		return (kor + eng + mat) / 3.0;
+	}
+}
+
+package TJ;
+
+public class SingletonExample {
+
+	public static void main(String[] args) {
+		Singleton obj1= Singleton.gets1();
+		System.out.println("이름 :" + obj1.name);
+		System.out.println("총점 :" + obj1.tot());
+		System.out.println("평균 :" + obj1.avg());
+		
+	}
+
+}
+
+패키지
+com.dwit.ex01
+Sungjuk 클래스 => 생성자 국어,영어점수 
+getTot() 매소드 => return int 형
+com.dwit.ex02
+idCheck 클래스 => 생성자 id,pw입력
+void getId() 
+id = admin pw = 1111 비교해서 일치하면 로그인 성공 / 로그인 실패
+com.dwit.ex03 => 
+생성
+Result 실행클래스 생성 
+main() 메소드 사용
+import com.dwit.ex01.*;
+import com.dwit.ex02.*;
+Sungjuk 클래스 -> sung 객체 생성 
+총점 : xx
+idCheck 클래스 => id 객체 생성 
+로그인 결과 : 로그인 성공 / 실패
+
+package com.tj1;
+
+public class Sungjuk {
+int kor; int eng;
+//생성자
+public Sungjuk(int kor, int eng){
+	this.kor = kor;
+	this.eng = eng; 
+}
+//매소드
+public int getTot() {
+	return (kor + eng);
+}
+}
+
+package com.tj2;
+
+public class idCheck {
+String id; String pw;
+//생성자 
+public idCheck(String id, String pw){
+	this.id = id;
+	this.pw = pw;
+}
+public void getId() {
+	if(id.equals("admin") && pw.equals("1111")) {
+		System.out.println("로그인 성공");
+	}else {
+		System.out.println("로그인 실패");
+	}
+}
+}
+
+package com.tj3;
+import com.tj1.Sungjuk;
+import com.tj2.*;
+public class Result {
+
+	public static void main(String[] args) {
+		Sungjuk sung = new Sungjuk(100,90);
+		idCheck id = new idCheck("admin","1111");
+		int tot = sung.getTot();
+		System.out.println("총점 :" + tot);
+		id.getId();
+	}
+
+}
+
+
+Perosn 클래스 => 필드랑 매소드 static 선언
+기본  세율 TAX 필드 상수로 설정 => 0.03 기본 세율
+static  salary 매개변수 월급
+
+매소스 생성 getTax() => 소득세 : 본봉 * 0.03
+매소스 생성 getTax2() => 지방세 : 소득세*10%
+
+PersonExmaple 클래스 => 참조객체 생성 X
+Scanner 로 이용해서 사용
+월급 입력 : 1000000
+
+출력 : 
+본봉 : 1000000원
+소득세 : 30000원
+지방세 : 3000원
+총세금 :33000원
+실수령액 : 967000원
+
+package p1;
+
+public class Person {
+static final double TAX =0.03;
+static int salary;
+static int getTax() { //세금
+	return (int)(salary * TAX);
+}
+static int getTax2() { //자방세
+	return (int)((salary * TAX) * 0.1);
+	
+}
+}
+
+package p1;
+import java.util.Scanner;
+public class PersonExample {
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println(" 월급 입력 :");
+		Person.salary = sc.nextInt();
+		int tax1 = Person.getTax(); //세금
+		int tax2 = Person.getTax2(); //지방세
+		System.out.println("월급 :" + Person.salary + "원");
+		System.out.println("소득세 :" + tax1 + "원");
+		System.out.println("지방세 :" + tax2 + "원");
+	System.out.println("실수령액 :" + (Person.salary-(tax1 + tax2)) + "원");
+	}
+
+}
+
+
+pakage1
+AA 클래스 => 참조 클래스
+필드 생성 
+default name, num1, num2,num3
+private num4	
+생성자 생성
+모두 허용 AA(name, num1, num2)
+같은 패키지만 허용 AA(num3, num4)
+
+매소드
+모두 허용 void getCalc() =>필드사용 : num1, num2
+두수의 합 : 
+두수의 빼기 :
+두수의 곱
+두수의 나누기
+
+같은 패키지만 허용 getEven() =>필드 사용 : num3
+수 하나를  입력 받아서  홀수 인지 짝수인지 확인
+짝수이면 true / 홀수이면 false 반환
+
+모든 패키지 허용   getNum(매개변수)
+필드사용 : num4 을 리턴
+
+BB 클래스 => main() 실행 클래스
+getEven() 메소드 호출  num3 필드 이용해서홀수 인지 짝수인지 리턴
+true/ false 출력
+
+pakage2
+
+CC클래스 => main()
+pakage1 => import
+getCalc() 메소드 호출해서 출력
+getNum(매개값 입력) 메소드 호출해서 리턴해서 숫자 출력
+
+package p1;
+
+public class AA {
+	//디폴트
+String name; int num1; int num2; int num3;
+private int num4;
+
+//생성자
+public AA(String name, int num1, int num2) {
+	this.name = name;
+	this.num1 = num1;
+	this.num2 = num2;
+}
+
+AA(int num3, int num4){
+	this.num3 = num3;
+	this.num4 =  num4;
+}
+//매소드
+
+public void getCalc() {
+System.out.println("두수의합 :" + (num1 + num2));
+System.out.println("두수의 빼기 :" + (num1 - num2));
+System.out.println("두수의 곱 :" + (num1 * num2));
+System.out.println("두수의 나누기 :" + (num1 / num2));
+}
+
+boolean getEven() {
+	if(num3 % 2 == 0) {
+		return true;
+	}else {
+		return false;
+	}
+}
+
+public int getNum(int num) {
+	return this.num4 = num;
+}
+}
+
+package p1;
+
+public class BB {
+
+	public static void main(String[] args) {
+		
+		AA aa = new AA(10,20);
+		boolean result = aa.getEven();
+		System.out.println(result);
+	}
+
+}
+
+package p2;
+import p1.AA;
+public class CC {
+
+	public static void main(String[] args) {
+		AA aa = new AA("홍길동",30,20);
+		aa.getCalc();
+		int result = aa.getNum(100);
+		System.out.println(result);
+
+	}
+
+}
+
+
+상속
+
+package p1;
+
+public class Animal {
+	 String kind; String color;
+	 
+	 void powerOn() {
+		 System.out.println("전원 ON");
+	 }
+	 void powerOff() {
+		 System.out.println("전원 OFF");
+	 }
+	 void showAnimai() {
+		 System.out.println("동물 종류 :" + kind + "동몰 피부색 :" + color);
+	 }
+}
+
+package p1;
+
+public class Dog extends Animal{
+	int age;
+	
+	//생성자
+	Dog(String kind, String color, int age) {
+	this.kind = kind;
+	this.color = color;
+	this.age = age;
+	}
+	void showAge() {
+		System.out.println("강아지 나이 :" + age);
+	}
+
+}
+
+
+
+
+package p1;
+
+public class AnimalExample {
+
+	public static void main(String[] args) {
+	Dog dog = new Dog("시추","하얀색", 20);
+	System.out.println(dog.kind);
+	System.out.println(dog.color);
+	System.out.println(dog.age);
+	
+	dog.powerOn(); // 부모클래스 상속 매소드
+	dog.showAge(); // 인스턴스 매소드
+	}
+
+}
+
+클래스 상속 실습문제
+
+부모 클래스 Sungjuk
+필드 이름, 국어점수, 수학점수,
+
+기본 생성자 
+메소드
+void 형 Tot()
+
+자식클래스 Sungjuk2 => 부모클래스 상속
+double 평균 필드생성
+메소드 
+void Avg 평균()
+
+실행 클래스 SungExample
+자식객체 생성
+생성자 이용해서 이름, 국어,수학
+출력
+이름 : xxx 국어 : xx 수학 : xx
+총점 : xx
+평균 : xx.x 
+
+
+package p1;
+
+public class Sungjuk {
+String name; int kor ;int mat;
+
+void Tot() {
+	System.out.println("총점 :" + (kor + mat));
+}
+}
+
+package p1;
+
+public class Sungjuk2 extends Sungjuk{
+	double avg;
+	// 생성자
+	Sungjuk2(String name, int kor, int mat){ //부모 클래스의 필드
+		this.name = name;
+		this.kor = kor;
+		this.mat = mat;
+	}
+	//매소드
+	void avg1() {
+		avg = (kor + mat) / 2.0;
+		System.out.println("평균 :" + avg);
+	}
+}
+
+package p1;
+
+public class SungExample {
+
+	public static void main(String[] args) {
+	Sungjuk2 sung = new Sungjuk2("홍길동",100,90);
+	System.out.println("이름 :" + sung.name);
+	System.out.println("국어 :" + sung.kor);
+	System.out.println("수학 :" + sung.mat);
+	sung.Tot(); // 부모클래스 상속
+	sung.avg1(); 
+	}
+}
+
+부모 클래스 Member 
+필드생성 id,pw
+
+생성자 생성 id,pw 
+
+void 메소드 생성 idCheck()
+id : admin =>id가 admin이면 암호 : 1111 로그인 성공 / 로그인 실패
+
+자식클래스 Member2
+필드생성 name,ssn
+생성자 name,ssn,id,pw
+id,pw 변수는 suepr() 메소드 이용해서 부모 생성자 호출
+자식 클래스에서 idCheck() 매소드 상속
+id : admin pw : 1111 체크해서 로그인 성공 / 로그인 실패
+
+2. void 메소드 생성 idCheck() 메소드 재정의
+id : admin =>id가 admin이면 암호 : 1111 
+로그인 성공 여부 : 로그인 성공 or 로그인 성공 여부 : 로그인 실패
+실행 클래스 
+MemberExample 
+자식 클래스 객체 생성
+이름, 주민번호, 아이디, 비번을 생성자 이용해서 입력
+부모객체 생성해서 idCheck() 호출
+자식객채 생성해서 idCheck() 호출
+출력 결과
+이름 : xxx 아이디 : xxx 비번 : xxx
+로그인 성공 / 로그인 실패  => 부모 객체
+로그인 성공 여부 : 로그인 성공 / 로그인 성공 여부 : 로그인 실패 => 자식객체
+
+package p1;
+
+public class Member {
+String id ; String pw;
+	
+	Member(String id, String pw){
+		this.id=id;
+		this.pw=pw;
+	}
+
+	//메소드
+	void idCheck() {
+		if(id.equals("admin") && pw.equals("1111")) 
+		{ System.out.println("로그인 성공");}
+		else {System.out.println("로그인 실패");}
+			
+		}
+}
+
+package p1;
+
+public class Member2 extends Member{
+	String name; String ssn;
+	Member2(String name, String ssn, String id, String pw){
+		// 부모 생성자 호출
+		super(id,pw);
+		this.name=name;
+		this.ssn=ssn;
+	}
+	
+	//매소드 재정의
+	void idCheck() {
+		if(id.equals("admin") && pw.equals("1111")) 
+		{ System.out.println("로그인 성공 여부 : 로그인 성공");}
+		else {System.out.println("로그인 성공여부 : 로그인 실패");}
+			
+		}
+}
+
+
+package p1;
+
+public class MemberExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Member mem = new Member("admin","1111");
+		Member2 mem2=new Member2("홍길동","123456-1234567", "admin", "2222");
+		System.out.println("이름 :" + mem2.name + " 아이디 :" + mem2.id + 
+				" 암호 :" + mem2.pw);
+		mem.idCheck();
+		mem2.idCheck();
+	}
+
+}

@@ -1,0 +1,445 @@
+클래스명
+Login
+
+id =admin pw =1111(운영자 id, pw)
+필드 생성 
+생성자 이용해서 id, pw 초기화
+
+메소드 idCheck ()
+로그인 성공 / 로그인 실패 리턴값
+실행 클래스
+LoginExample
+
+Scanner 이용해서 
+id, pw 입력받아서 로그인 성공 / 로그인 실패
+
+아이디 : ssss 암호 111 로그인실패
+아이디 : admin 암호 1111 로그인 성공
+
+
+성공 하면 while 이용해서 로그인 실패 계속 입력 받도록 설정
+로그인 성공 while 빠져 나오기
+
+package TJ;
+
+public class Login {
+String id; String pw;
+//생성자
+Login(String id, String pw){
+	this.id = id;
+	this.pw = pw;
+}
+//메소드
+String idCheck() {
+	if(id.equals("admin") && pw.equals("1111")) {
+		return "로그인 성공";
+	}else {
+		return "로그인 실패";
+	}
+}
+
+}
+
+
+package TJ;
+import java.util.Scanner;
+public class LoginExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String id; String pw;
+		while(true) { // 무한 루프
+			Scanner sc= new Scanner(System.in);
+			System.out.println("id :");
+			id = sc.next();
+			System.out.println("pw");
+			pw = sc.next();
+			Login login=new Login(id,pw);
+			String result = login.idCheck();
+			if(result == "로그인 성공") {
+		System.out.println("id :" + id + " pw :" + pw + "로그인 성공");
+				break; // while 종료
+			}else {
+		System.out.println("id :" + id + " pw :" + pw + "로그인 실패");		
+			}
+		}
+	}
+
+}
+
+
+매개변수를 모를때 : 배열 형태
+1~10까지의 홀수의 합 / 짝수의 합
+Computer class 
+홀수의 합 sum1()
+짝수의 합 sum2()
+return 값
+
+
+ComputerExample
+실행 클래스 
+홀수의 합 : xx 짝수의 합 : xx
+
+values1={1,2,3,4...10}// for문 형태
+
+홀수의 합 : xx
+짝수의합 : xx
+
+
+package TJ;
+
+public class Computer {
+	//짝수의 합
+	int sum1(int[] values) {
+		int sum = 0;
+		for(int i=0;i<values.length;i++) {
+			if(values[i] % 2 == 0) {
+				sum += values[i];	
+			}
+			
+			}
+		return sum;
+	}
+	//홀수의 합
+	int sum2(int[] values) {
+		int sum = 0;
+		for(int i=0;i<values.length;i++) {
+			if(values[i] % 2 != 0) {
+				sum += values[i];
+			}
+			
+		}
+		return sum;
+	}
+
+}
+
+package TJ;
+
+public class ComputerExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Computer com1= new Computer();
+		
+		//int[] values1= {1,2,3,4,5,6,7,8,9,10}; 1번째
+		int[] values1 = new int[10]; //2번째 
+		for(int i=0;i<values1.length;i++) {
+			values1[i]=(i+1);
+		}
+		int result1 = com1.sum1(values1);
+		int result2 = com1.sum2(values1);
+		System.out.println("홀수의 합 :" + result2);
+		System.out.println("짝수의 합 :" + result1);
+		
+	}
+
+}
+
+
+
+Scanner 사용
+배열형태로 5개의 values 입력 받아서 
+입력값 
+values1 값 : 10
+...
+values5 값 : 20
+
+Computer 클래스
+int 총점에 tot() 메소드
+double 평균에 avg() 메소드
+ 
+ComputerExample 클래스
+배열값 90,80,.. 출력
+총점 : xx
+평균 : xx.x
+
+베열값 :10 ,20 ,30 ,40 ,50 ,
+총점 : 150
+평균 :30.0
+
+package TJ;
+
+public class Computer {
+	int sum;
+	
+	int tot(int[] values) {
+		for(int i=0;i<values.length;i++) {
+			sum +=values[i];
+		}
+		return sum;
+	}
+	double avg() {
+		
+		double avg =(double) sum /5;
+		return avg;
+	}
+}
+
+package TJ;
+import java.util.Scanner;
+public class ComputerExample {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		Computer com1=new Computer();
+		int[] values1=new int[5];
+		//배열에 입력
+		for(int i=0;i<values1.length;i++) {
+			System.out.println("values[" + (i+1) + "] 값");
+			values1[i]=sc.nextInt();
+		}
+		int result1 = com1.tot(values1);
+		double result2 = com1.avg();
+		System.out.println("배열 값 :");
+		//배열 값 출력
+		for(int i=0;i<values1.length;i++) {
+			System.out.print(values1[i] + ",");
+		}
+		System.out.println();
+		System.out.println("총점 :" +  result1);
+		System.out.println("평균 :" + result2);
+	}
+}
+
+
+Calc 클래스
+//필드, 생성자, 메소드 알아서 처리...
+gugudan()
+sungjuk()
+idcheck()
+메소드 형식은 void or return 알아서 처리
+값은 Calc 생성자 오버로드 이용해서 사용
+CalcExample 클래스
+while 문
+메뉴 입력 : 1. 구구단 2. 성적처리 3. id체크 0. 종료
+
+1. 구구단처리에 필요한 메소드 호출
+2 * 1 =2
+9 * 9 =81
+2. 성적처리 메소드 호출
+국어,영어, 수학 매개변수 받어서 총점 평균 출력
+3. id체크 메소드 호출
+매개변수 =>id : admin 암호 : 1111 
+로그인 성공 / 실패
+
+0. 종료 => 메뉴 종료 출력
+
+Calc calc=new Calc(100,90,80);
+Calc calc2=new Calc("admin","1112");
+
+
+package TJ;
+
+public class Calc {
+	//필드 선언
+	int kor; int eng; int mat; int tot; double avg;
+	String id; String pw;
+	
+	//생성자 생성 오버로드
+	Calc(String id, String pw){
+		this.id = id;
+		this.pw = pw;
+	}
+	
+	Calc(int kor, int eng, int mat){
+		this.kor = kor;
+		this.eng = eng;
+		this.mat = mat;
+	}
+	// 메소드 
+	void gugudan() {
+		for(int i=2;i<=9;i++) {
+			for(int j=1;j<=9;j++) {
+				System.out.println(i + "*" + j + "=" + (i*j));
+			}
+		}
+	}
+	void sungjuk() {
+		tot = kor + eng + mat;
+		avg = tot / 3.0;
+		System.out.println("총점 :" + tot + " 평균 :" + avg);
+	}
+	void idCheck() {
+		if(id.equals("admin") && pw.equals("1111")) {
+			System.out.println("로그인 성공");
+		} else {
+			System.out.println("로그인 실패");
+		}
+	}
+}
+
+package TJ;
+import java.util.Scanner;
+public class CalcExample {
+
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	int num;
+	Calc calc=new Calc(100,80,90);
+	Calc calc2=new Calc("admin","1111");
+	while(true) {
+		System.out.println("메뉴 : 1. 구구단 2. 성적처리 3. 아이디 체크 0.종료");
+		num = sc.nextInt();
+		if(num == 1) {
+			calc.gugudan();
+			
+		}else if(num == 2) {
+			
+			calc.sungjuk();
+		}else if(num == 3) {
+			
+			calc2.idCheck();
+		}else if(num == 0) {
+			System.out.println("메뉴 종료");
+			break;
+		}
+	}
+	}
+
+}
+
+Static
+Calc 클래스 
+정적필드 이름, 국어,영어,수학
+
+Scanner 받은 이름, 국어,영어,수학점수 초기화
+
+정적 메서드
+int tot()
+double avg()
+String grade() => 평균이 60점 이상이면서 모든 과목이 40점 이상이어야 합격 아니면 불합격
+avg() 메소드 호출해서 평균
+
+CalcExample 클래스
+Scanner 이용해서 이름, 국어, 영어,수학 입력
+객체 만들지 말고 클래스명으로만 호출해서 처리
+정적메서드를 호출해서 
+
+이름, 총점, 평균, 합격여부  출력....
+
+package TJ;
+
+public class Calc {
+	static String name;
+	static int kor; static int eng; static int mat;
+	
+	static int tot() {
+		return kor + eng + mat;
+	}
+	static double avg(){
+		return (kor + eng + mat) / 3.0;
+		}
+	static String grade() {
+		double avg = avg();
+		if(avg >= 60 && kor >= 40 && eng >=40 && mat >=0) {
+			return "합격";
+		}else {
+			return "불합격";
+		}
+	}
+}
+	
+package TJ;
+import java.util.Scanner;
+public class CalcExample {
+
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("name :");
+	Calc.name = sc.next();
+	System.out.println("kor :");
+	Calc.kor = sc.nextInt();
+	System.out.println("eng :");
+	Calc.eng = sc.nextInt();
+	System.out.println("mat :");
+	Calc.mat = sc.nextInt();
+	int tot = Calc.tot();
+	double avg = Calc.avg();
+	String grade = Calc.grade();
+	System.out.println("이름 " + Calc.name + "총점" + tot + "평균 :" + avg);
+	System.out.println("합격여부 :" + grade);
+	}
+	}
+[마지막 실습문제]
+Calc 클래스 
+CalcExample 클래스 이용  
+
+클래스 내부메서드 호출
+int tot(kor, eng, mat)
+총점
+double avg(kor,eng,mat)
+총점을 받아서 평균
+void execute() 호출...
+avg 함수호출 
+tot 함수호출
+평균이 60점 이상이면 합격 아니면 불합격
+출력형태
+국어 : xx 영어 : xx 수학 : xxx
+총점 : xx  평균 : xx 합격여부 : 합격/불합격
+
+
+출력결과
+국어점수 :12 영어점수 : 12 수학점수 :12
+총점 : 36 평균 :12.0  합격여부 :불합격
+=> CalcExample에서 입력값 받아서 처리
+2번째  => execute() 
+Calc 클래스 수정
+input() 매소드 생성 => 입력 받는 메소를 클래스 내부에서 호출
+
+Scanner 이용해서 
+국어점수 : 
+영어점수 : 
+수학점수 : 
+받아서 위와 동일한 결과를 출력
+
+package TJ;
+import java.util.Scanner;
+public class Calc {
+	int kor; int eng; int mat;
+	void input() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("국어점수 :");
+		kor=sc.nextInt();
+		System.out.println("영어점수 :");
+		eng=sc.nextInt();
+		System.out.println("수학점수 :");
+		mat=sc.nextInt();
+	}
+	int tot() {
+		int result=kor+mat+eng;
+		return result;
+	}
+	double avg() {
+		int sum=tot();
+		double result=sum/3.0;
+		return result;
+	}
+	void execute() {
+		String grade;
+		input();
+		int result1=tot();
+		double result2=avg();
+		if(result2>=60.0) {
+			grade="합격";
+		}else {
+			grade="불합격";
+		}
+		System.out.println("국어점수 :" + kor + "영어점수 : " + eng + "수학점수 :" + mat);
+		System.out.println("총점 :" + result1 + "평균 :" + result2 + " 합격여부 :" + grade);
+	}
+		
+}
+	
+	
+package TJ;
+public class CalcExample {
+
+	public static void main(String[] args) {
+		Calc myCalc=new Calc();
+		myCalc.execute();
+			
+	}
+}
+
+

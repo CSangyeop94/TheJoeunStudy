@@ -6,13 +6,14 @@ public class SungEx {
 
 	public static void main(String[] args) {
 		int num;
+		// 배열 생성
 		String[] name=new String[3];
 		int[] kor=new int[3];
 		int[] eng=new int[3];
 		int[] mat=new int[3];
 		int[] tot=new int[3];
 		double[] avg=new double[3];
-		String[] grade=new String[3];
+		String[] grade = new String[3];
 		String id ;String pw;
 		Scanner sc=new Scanner(System.in);
 		while(true) {

@@ -5,68 +5,62 @@ import java.util.Scanner;
 public class SungEx {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("메뉴를 선택해주세요");
-		String name = null;
-		String id = null;
-		String pw = null;
+		int num;
+		String[] name=new String[3];
+		int[] kor=new int[3];
+		int[] eng=new int[3];
+		int[] mat=new int[3];
+		int[] tot=new int[3];
+		double[] avg=new double[3];
+		String[] grade=new String[3];
+		String id ;String pw;
+		Scanner sc=new Scanner(System.in);
+		while(true) {
+	System.out.println("메뉴 1. 점수 입력 2. 점수 출력  3. 합격여부 4.아이디체크 5. 종료");
+	num=sc.nextInt();
+	
+	if(num==1) {
 		
-		int[] score = new int[6];
-		score[i] = kor; score[i] = eng; score[i] = mat; 
-		
-		
-		int kor = 0;
-		int eng = 0;
-		int mat = 0;
-		Sung s1 = new Sung(kor, eng, mat, id, pw);
-		while (true) {
-
-			System.out.println("1. 점수입력\n" + "2. 점수 출력\n" + "3.합격 여부\n" + "4. 아이디체크\n" + "5. 종료");
-			int num = sc.nextInt();
-			if (num == 1) {	
-				for(int i = 0; i<5; i++) {
-					int[] arr = new int[i];
-					System.out.println("점수를 입력해주세요");
-					System.out.println("name : ");
-				    name[i] = sc.next();
-					System.out.println("kor : ");
-					kor[i] = sc.nextInt();
-					System.out.println("eng : ");
-					eng[i] = sc.nextInt();
-					System.out.println("mat : ");
-					mat[i] = sc.nextInt();
-				}
-				
-			} else if (num == 2) {
-				System.out.println("name : " + name);
-				System.out.println("kor : " + kor);
-				System.out.println("eng : " + eng);
-				System.out.println("mat : " + mat);
-				return;
-			} else if (num == 3) {
-				System.out.println("name : " + name);
-				System.out.println("총점 : " + s1.getTot());
-				System.out.println("평균 : " + s1.getAvg());
-				System.out.println("합격여부 : " + s1.getGrade());
-				return;
-			} else if (num == 4) {
-				System.out.println("id/pw 입력해주세요");
-				System.out.println("id : ");
-				id = sc.next();
-				System.out.println("pw : ");
-				pw = sc.next();
-				s1.getIdCheck(id, pw);
-				return;
-			} else if (num == 5) {
-				System.out.println("종료합니다.");
-				return;
-			} else {
-				System.out.println("잘못된 입력입니다.");
-			}
-
+		for(int i=0;i<3;i++) {
+		System.out.println("이름 :");
+		name[i]=sc.next();
+		System.out.println("국어점수 :");
+		kor[i]=sc.nextInt();
+		System.out.println("영어점수 :");
+		eng[i]=sc.nextInt();
+		System.out.println("수학점수 :");
+		mat[i]=sc.nextInt();
+		Sung sung=new Sung(name[i],kor[i],eng[i],mat[i]);
+		tot[i]=sung.getTot();
+		avg[i]=sung.getAvg();
+		grade[i]=sung.getGrade();
 		}
-
+		
+	}else if(num==2) {
+		
+		for(int i=0;i<3;i++) {
+			System.out.println("이름 :" + name[i]);
+			System.out.println("국어점수 : " + kor[i]);
+			System.out.println("영어점수 : " + eng[i]);
+			System.out.println("수학점수 :" + mat[i]);
+		}
+	}else if(num==3) {
+		for(int i=0;i<3;i++) {
+			System.out.println("이름 :" + name[i]);
+			System.out.println("총점 :" + tot[i]);
+			System.out.println("평균 : " + avg[i]);
+			System.out.println("합격여부 : " + grade[i]);
+		}
+	}else if(num==4) {
+		System.out.println("아이디 :");
+		id=sc.next();
+		System.out.println("암호 :");
+		pw=sc.next();
+		Sung sung=new Sung();
+		sung.idCheck(id, pw);
+	}else {
+		break ;
+			}
+		}
 	}
-
 }

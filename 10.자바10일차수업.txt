@@ -1,0 +1,772 @@
+필드의 다형성
+package sec07.exam03_field_polymorphism;
+
+public class Tire {
+	//필드
+	public int maxRotation;     			//최대 회전수(최대 수명)
+	public int accumulatedRotation;		//누적 회전수
+	public String location;       			//타이어의 위치
+
+	//생성자
+	public Tire(String location, int maxRotation) {
+		this.location = location;
+		this.maxRotation = maxRotation;
+	}
+
+	//메소드
+	public boolean roll() {
+		++accumulatedRotation;		
+		if(accumulatedRotation<maxRotation) {
+			System.out.println(location + " Tire 수명: " + (maxRotation-accumulatedRotation) + "회");
+			return true;
+		} else {
+			System.out.println("*** " + location + " Tire 펑크 ***");
+			return false;
+		}
+	}
+}
+
+
+package sec07.exam03_field_polymorphism;
+
+public class HankookTire extends Tire {
+	//필드
+	//생성자
+	public HankookTire(String location, int maxRotation) {
+		super(location, maxRotation);
+	}	
+	//메소드
+	@Override
+	public boolean roll() {
+		++accumulatedRotation;		
+		if(accumulatedRotation<maxRotation) {
+			System.out.println(location + " HankookTire 수명: " + (maxRotation-accumulatedRotation) + "회");
+			return true;
+		} else {
+			System.out.println("*** " + location + " HankookTire 펑크 ***");
+			return false;
+		}
+	}
+}
+
+
+
+
+
+package sec07.exam03_field_polymorphism;
+
+public class KumhoTire extends Tire {
+	//필드
+	//생성자
+	public KumhoTire(String location, int maxRotation) {
+		super(location, maxRotation);
+	}	
+	//메소드
+	@Override
+	public boolean roll() {
+		++accumulatedRotation;		
+		if(accumulatedRotation<maxRotation) {
+			System.out.println(location + " KumhoTire 수명: " + (maxRotation-accumulatedRotation) + "회");
+			return true;
+		} else {
+			System.out.println("*** " + location + " KumhoTire 펑크 ***");
+			return false;
+		}
+	}
+}
+
+package sec07.exam03_field_polymorphism;
+
+public class CarExample {
+	public static void main(String[] args) {
+		Car car = new Car();
+		
+		for(int i=1; i<=5; i++) {
+			int problemLocation = car.run();
+			switch(problemLocation) {
+				case 1:
+					System.out.println("앞왼쪽 HankookTire로 교체");
+					car.frontLeftTire = new HankookTire("앞왼쪽", 15);
+					break;
+				case 2:
+					System.out.println("앞오른쪽 KumhoTire로 교체");
+					car.frontRightTire = new KumhoTire("앞오른쪽", 13);	
+					break;
+				case 3:
+					System.out.println("뒤왼쪽 HankookTire로 교체");
+					car.backLeftTire = new HankookTire("뒤왼쪽", 14);	
+					break;
+				case 4:
+					System.out.println("뒤오른쪽 KumhoTire로 교체");
+					car.backRightTire = new KumhoTire("뒤오른쪽", 17);		
+					break;
+			}
+			System.out.println("----------------------------------------");
+		}
+	}
+}
+
+
+package sec07.exam03_field_polymorphism;
+
+public class Car {
+	//필드
+	Tire frontLeftTire = new Tire("앞왼쪽", 6);
+	Tire frontRightTire = new Tire("앞오른쪽", 2);
+	Tire backLeftTire = new Tire("뒤왼쪽", 3);
+	Tire backRightTire = new Tire("뒤오른쪽", 4);
+	
+	//생성자
+	
+	//메소드
+	int run() {
+		System.out.println("[자동차가 달립니다.]");
+		if(frontLeftTire.roll()==false) { stop(); return 1; };
+		if(frontRightTire.roll()==false) { stop(); return 2; };
+		if(backLeftTire.roll()==false) { stop(); return 3; };
+		if(backRightTire.roll()==false) { stop(); return 4; };
+		return 0;
+	}
+	
+	void stop() {
+		System.out.println("[자동차가 멈춥니다.]");
+	}
+}
+
+
+
+
+
+부모클래스 => S1
+String name, int kor, int eng 
+생성자 name, kor, eng
+매소드 print() 출력 ==== 성적처리 =====
+
+자식클래스  => S2
+int mat 
+생성자 name, kor, eng, mat
+메소드 void tot() 총점  => 총점 : xxx
+void avg() 평균 " 평균 : xx.x
+
+실행 클래스 => S2Example 
+Scanner 
+이름 : xxx
+국어 ; 영어 : 수학
+
+S2 객체 생성해서 4개의 생성자 매개값 받아서
+tot(), avg() 호출 출력
+
+
+package TJ3;
+
+public class S1 {
+String name; int kor; int eng; int mat;
+//생성자
+S1(String name, int kor, int eng){
+	this.name = name;
+	this.kor = kor;
+	this.eng = eng;
+}
+// 메소드
+void print() {
+	System.out.println("============성적처리 =============");
+}
+}
+
+
+package TJ3;
+
+public class S2 extends S1{
+	int mat;
+	//생성자
+	S2(String name, int kor, int eng, int mat){
+		super(name, kor, eng);
+		this.mat = mat;
+	}
+	//매소드
+	void tot() {
+		int tot = kor + eng + mat;
+		System.out.println("총점 :" + tot);
+	}
+	void avg() {
+		double avg = (kor + eng + mat) / 3.0;
+		System.out.println("평균 :" + avg);
+	}
+}
+
+
+package TJ3;
+import java.util.Scanner;
+public class S2Example {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		String name; int kor; int eng; int mat;
+		System.out.println("name :");
+		name = sc.next();
+		System.out.println("kor :");
+		kor = sc.nextInt();
+		System.out.println("eng :");
+		eng = sc.nextInt();
+		System.out.println("mat :");
+		mat = sc.nextInt();
+		
+		S2 s2=new S2(name, kor, eng, mat);
+		s2.print(); // 상속받은 메소드
+		s2.tot();
+		s2.avg();
+	}
+
+}
+
+
+package p10;
+
+public class Parent {
+	String name = "홍길동"; int kor = 100;
+	
+	public void method1() {
+		System.out.println("부모 method1");
+	}
+
+	public void method2() {
+		System.out.println("부모 method2");
+	}
+}
+
+package p10;
+
+public class Child extends Parent{
+	 int eng = 100;
+	public void method3() {
+		System.out.println("자식 method3");
+	}
+	public void method1() {
+		System.out.println("자식 method1");
+	}
+}
+
+
+package p10;
+
+public class Child2 extends Parent{
+
+	int mat = 100;
+	public void method1() {
+		System.out.println("자식 method1");
+	}
+	public void method4() {
+		System.out.println("자식 method4");
+	}
+}
+
+
+package p10;
+
+public class ChildExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Child child = new Child();
+		System.out.println(child.kor);
+		System.out.println(child.eng);
+		child.method1();
+		child.method2();
+		child.method3();
+		
+		//부모 클래스로 자동 타입 변환  child 클래스의 필드, 매소드 사용 x
+		Parent parent1 = child;
+		System.out.println(parent1.kor);
+		parent1.method1(); // 매소드 재정의
+		
+		Child2 child2 = new Child2();
+		System.out.println(child2.kor);
+		System.out.println(child2.mat);
+		
+		Parent parent2 = new Child2();
+		System.out.println(parent2.kor);
+		//System.out.println(parent2.);
+		parent2.method1();
+		parent2.method2();
+		child2.method4();
+	}
+
+}
+
+
+
+클래스의 다형성 실습문제
+Parent 부모 클래스
+필드 생성 kor,eng
+
+생성자 국어점수, 영어점수
+
+void 메소드 생성 tot1()
+kor + eng
+부모총점 : xx
+
+void 메소드 생성 avg( )
+(kor + eng) / 2.0
+부모평균 : xx.x
+
+void Child 자식클래스  => Parent 상속
+필드 mat 
+
+생성자 생성
+국어점수, 영어점수, 수학점수
+
+avg() 메소드 재정의
+(kor+eng+mat) / 3.0
+자식 평균 : xx.x
+tot2()
+kor + eng + mat 
+자식 총점 : xx
+
+childExample
+child 객체 생성
+생성자를 이용해서 점수 입력 후  출력
+
+parent 클래스 변수에 child 객체 대입해서 형변환(클래스 형변환)
+
+tot1() 메소드 호출
+avg() 메소드 호(재정의)
+child 참조변수 이용해서 tot2() 메소드 호출 가능
+
+2. 
+확인 후 스캐너를 이용해서 국어, 영어, 수학점수 입력 후 출력
+
+국어 : 
+100
+영어 : 
+90
+수학 : 
+80
+부모 총점 :190
+자식 평균 :90.0
+자식 총점: 270
+
+
+package p10;
+
+public class Parent {
+int kor; int eng;
+	//셍성자
+	public Parent(int kor, int eng) {
+	this.kor=kor;
+	this.eng=eng;
+	}
+	//메소드
+	public void tot1()
+	{
+		int tot=kor + eng;
+		System.out.println("부모 총점 :" +tot);
+	}
+	public void avg() {
+		double avg=(kor + eng) /2.0;
+		System.out.println("부모 평균 :" +avg);
+		
+	}
+}
+
+package p10;
+
+public class Child extends Parent{
+	int mat;
+	//생성자
+	public Child(int kor, int eng , int mat) {
+	super(kor,eng);
+	this.mat=mat;
+	}
+	//메소드 재정의
+	public void avg() {
+			double avg=(kor + eng+ mat)/ 3.0;
+			System.out.println("자식 평균 :" + avg);
+		}
+
+		void tot2() {
+			int tot=(kor + eng + mat);
+			System.out.println("자식 총점:" + tot);
+		}
+}
+
+package p10;
+import java.util.Scanner;
+public class ChildExample {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int kor; int eng; int mat;
+		System.out.println("국어 : ");
+		kor=sc.nextInt();
+		System.out.println("영어 : ");
+		eng=sc.nextInt();
+		System.out.println("수학 : ");
+		mat=sc.nextInt();
+		Child child=new Child(kor,eng,mat);
+		Parent parent=child; // 클래스 형변환
+		parent.tot1();
+		parent.avg();
+		child.tot2();
+		
+		
+	}
+}
+
+
+매개변수의 다형성 실습문제
+부모클래스 Check
+필드 
+id, pw
+생성자 생성
+매소드 id(클래스 변수) => Check check
+아아디 : admin 비밀번호 : 1111 로그인 성공 / 로그인 실패
+
+자식클래스 => 생성자 생성 부모클래스 상속
+IdCheck01
+매소드 재정의
+매소드 id(클래스변수) 재정의 아이디 admin 비밀번호 1234 로그인 성공 / 로그인 실패
+
+실행 클래스
+CheckExample
+Check 클래스를 check 참조변수로 객체 생성 id 메소드 호출후 결과 값 확인
+아이디 : admin 비밀번호 : 1111 로그인 성공
+Check 클레스의 check2 참조 변수를 이용해서 자식 클래스인 idCheck01을  객체 생성 후 필드의 다형성을 영해서 id
+매소드를 호출해서 결과 값 확인
+
+id : admin pw : 1234 로그인 성공
+
+
+package p20;
+
+public class Check {
+String id; String pw;
+//생성자 
+Check(String id, String pw){
+	this.id = id;
+	this.pw = pw;
+}
+
+public void id(Check check) {
+	if(id.equals("admin") && pw.equals("1111")) {
+		System.out.println("id :" + id + "pw :" + pw);
+		System.out.println("로그인 성공");
+	}else {
+		System.out.println("id :" + id + "pw :" + pw);
+		System.out.println("로그인 실패");
+	}
+}
+}
+
+package p20;
+
+public class IdCheck extends Check{
+	
+	//생성자
+	IdCheck(String id, String pw){
+		super(id,pw);
+	}
+	//매소드 재정의
+	public void id(Check check) {
+		if(id.equals("admin") && pw.equals("1234")) {
+			System.out.println("id :" + id + "pw :" + pw);
+			System.out.println("로그인 성공");
+		}else {
+			System.out.println("id :" + id + "pw :" + pw);
+			System.out.println("로그인 실패");
+		}
+	}
+
+}
+
+package p20;
+
+public class CheckExample {
+
+	public static void main(String[] args) {
+		//부모 클래스 admin 1111
+		Check check = new Check("admin","2222");
+		check.id(check);
+		//자식 클래스 매개 변수(클래스 변수) 대입해서 부모타입으로 자동 형변환 admin 1234
+		Check check2 = new IdCheck("admin","1234");
+		check2.id(check2); => //Check check2 = new IdCheck("admin","1234");
+	}
+
+}
+
+
+추상클래스 실습
+Sungjuk
+필드 kor, eng ,mat 
+id, pw
+
+생성자 생성 
+성적 국어, 영어,수학
+Sungjuk(int kor, int eng, int mat){
+}
+Sungjuk(String id, String pw){
+}
+생성자 생성
+id,pw 
+
+총점 추상메소드 void tot()
+평균 매소드 avg() double return
+합격처리 grade() void형 
+평균이 60점 이상이면서 모든 과목이 40점 이상이면 합격 / 불합격 출력
+id체크 매소드 IdCheck() void 형
+아이디 : admin 암호 1234
+일치하면 로그인 성공 / 로그인 실패
+
+2. 실체 클래스(자식클래스)
+Sungjuk2 클래스
+국어,영어,수학,id,pw 점수를 받는 생성자 생성
+=> tot() 메소드 구현 
+
+id,pw 받는 생성자 생성
+
+3. 실행 클래스
+SungjukExample
+
+생성자로 국어, 영어 ,수학, id, pw
+ 
+
+출력결과
+
+총점 : xxx
+평균 : 63.333333333333336
+합격입니다.
+로그인 성공
+
+
+
+package p20;
+
+public abstract class Sungjuk {
+
+	public int kor ;int eng; int mat;
+	public String id; String pw;
+	
+	public Sungjuk(int kor, int eng, int mat, String id, String pw) {
+		this.kor=kor;
+		this.eng=eng;
+		this.mat=mat;
+		this.id=id;
+		this.pw=pw;
+	}
+	
+	
+	public double avg() {
+		double avg=(kor+eng+mat)/3.0;
+		return avg;
+	}
+	
+	public void grade() {
+		double avg=avg();
+		
+		if(avg>60.0 && kor>=40 && eng>=40 && mat>=40) {
+			System.out.println("합격입니다.");
+		}else {
+			System.out.println("불합격입니다.");
+		}
+	}
+	
+	public void idCheck() {
+		if(id.equals("admin") && pw.equals("1234")) {
+			System.out.println("로그인 성공");
+		}else {
+			System.out.println("로그인 실패");
+		}
+	}// 추상메소드 선언
+	public abstract void tot();
+}
+
+package p20;
+
+public class Sungjuk2 extends Sungjuk{
+	public Sungjuk2(int kor, int eng, int mat, String id, String pw) {
+		super(kor,eng,mat,id,pw);
+	}
+public void tot() { // 구현 메소드
+	int tot = kor + eng + mat;
+	System.out.println( "총점 : " + tot);
+}
+
+}	
+
+
+package p20;
+
+public class SungjukExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Sungjuk2 sung=new Sungjuk2(10,100,80,"admin","1111");
+		
+		sung.tot();
+		double result=sung.avg();
+		System.out.println("평균 : " + result);
+		sung.grade();
+		sung.idCheck();
+	}
+
+}
+
+
+[ 최종종합문제]
+
+package100 생성
+Sung 클래스 생성
+필드는 알아서 설정
+메소드
+생성자 생성 
+getTot() return int 
+
+getAvg() return double
+=>getTot() 호출에서 평균
+
+getGrade() return String
+평균이 60점 이상이면서 모든 과목이 60점 이상이면 합격 아니면 불합격
+
+getIdCheck(String id, String pw) void형
+아이디 : admin 암호 : 1111 
+일치라면 
+아이디 : admin 암호: 1111 => 로그인 성공 출력
+아니면 : 로그인 실패 출력 
+SungExample 
+Scanner 사용
+이름, 국어, 영어, 수학,평균,총점 배열로 선언 5명 입력
+
+메뉴 
+1. 점수 입력 2. 점수출력 3. 합격여부 4. 아이디 체크 5. 종료
+1. 점수 입력 => 3명만 입력
+이름 입력
+국어점수
+영어점수
+수학점수
+
+2. 점수 출력
+입력한 데이터의 출력
+이름 국어점수 영어점수 수학점수
+
+3. 합격 여부
+출력
+이름 총점 평균 합격여부
+getTot(), getAvg(), getGrade() 매소드 이용해서 출력
+
+4. 아이디입력 : 
+   암호 입력 :
+getIdCheck() 메소드 출력
+5. 종료
+
+package ppp;
+
+public class Sung {
+	String name; int kor; int eng; int mat;
+	Sung() {
+	}
+	Sung(String name, int kor, int eng, int mat){
+		this.name=name;
+		this.kor=kor;
+		this.eng=eng;
+		this.mat=mat;
+	}
+	
+	int getTot() {
+		int tot=kor+eng+mat;
+		return tot;
+	}
+	double getAvg() {
+		int tot=getTot();
+		double avg=tot/3.0;
+		return avg;
+	}
+	
+	String getGrade() {
+		double avg=getAvg();
+		
+		if(avg>=60.0 && this.kor >=40 && this.eng >=40 && this.mat >=40) {
+			return "합격";
+		}else {
+			return "불합격";
+		}
+	}
+	void idCheck(String id, String pw) {
+		if(id.equals("admin") && pw.equals("1111")) {
+			System.out.println("로그인 성공");
+		}else {
+			System.out.println("로그인 실패");
+		}
+		
+	}
+}
+
+package ppp;
+import java.util.Scanner;
+public class SungExample {
+
+	public static void main(String[] args) {
+		int num;
+		String[] name=new String[3];
+		int[] kor=new int[3];
+		int[] eng=new int[3];
+		int[] mat=new int[3];
+		int[] tot=new int[3];
+		double[] avg=new double[3];
+		String[] grade=new String[3];
+		String id ;String pw;
+		Scanner sc=new Scanner(System.in);
+		while(true) {
+	System.out.println("메뉴 1. 점수 입력 2. 점수 출력  3. 합격여부 4.아이디체크 5. 종료");
+	num=sc.nextInt();
+	
+	if(num==1) {
+		
+		for(int i=0;i<3;i++) {
+		System.out.println("이름 :");
+		name[i]=sc.next();
+		System.out.println("국어점수 :");
+		kor[i]=sc.nextInt();
+		System.out.println("영어점수 :");
+		eng[i]=sc.nextInt();
+		System.out.println("수학점수 :");
+		mat[i]=sc.nextInt();
+		Sung sung=new Sung(name[i],kor[i],eng[i],mat[i]);
+		tot[i]=sung.getTot();
+		avg[i]=sung.getAvg();
+		grade[i]=sung.getGrade();
+		}
+		
+	}else if(num==2) {
+		
+		for(int i=0;i<3;i++) {
+			System.out.println("이름 :" + name[i]);
+			System.out.println("국어점수 : " + kor[i]);
+			System.out.println("영어점수 : " + eng[i]);
+			System.out.println("수학점수 :" + mat[i]);
+		}
+	}else if(num==3) {
+		for(int i=0;i<3;i++) {
+			System.out.println("이름 :" + name[i]);
+			System.out.println("총점 :" + tot[i]);
+			System.out.println("평균 : " + avg[i]);
+			System.out.println("합격여부 : " + grade[i]);
+		}
+	}else if(num==4) {
+		System.out.println("아이디 :");
+		id=sc.next();
+		System.out.println("암호 :");
+		pw=sc.next();
+		Sung sung=new Sung();
+		sung.idCheck(id, pw);
+	}else {
+		break ;
+	}
+		}
+	}
+
+	}
+
+
+
+
+

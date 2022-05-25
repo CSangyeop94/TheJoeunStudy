@@ -9,7 +9,7 @@ public class Test {
 		// 추상클레스 생성자는 간접적으로 관여한다. 직접적으로 하지는 못함
 		Child child = new Child();
 		
-		child.ChildMethod();
+		// child.ChildMethod();
 		
 
 	}

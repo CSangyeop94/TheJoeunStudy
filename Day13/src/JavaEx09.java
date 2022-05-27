@@ -1,5 +1,5 @@
 
-public class JavaEx9 {
+public class JavaEx09 {
 
 	public static void main(String[] args) throws Exception{
 		// throws Exception 블럭단위로 할때 사용

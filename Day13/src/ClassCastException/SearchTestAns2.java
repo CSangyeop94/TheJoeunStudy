@@ -21,6 +21,6 @@ public class SearchTestAns2 {
 				+ "클라우드 컴퓨팅은 전기망을 통한 전력망과 비슷한 일관성 및 규모의 경제를 달성하기 위해 "
 				+ "자원의 공유에 의존한다.";
 		
-		System.out.println(StringUtils.countMatches(sentence, "클라우드"));
+		// System.out.println(StringUtils.countMatches(sentence, "클라우드"));
 	}
 }

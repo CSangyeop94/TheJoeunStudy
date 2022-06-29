@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\TJ\eclipse-workspace\JAVAST\Ex01\.metadata\.plugins\org.eclipse.jdt.core
